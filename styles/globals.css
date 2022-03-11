@@ -5,6 +5,15 @@ body {
   font-family: "Poppins";
 }
 nav,
-footer {
+footer,
+main {
   font-family: "Poppins";
+}
+
+.title-banner{
+  font-weight: 700;
+  font-family: "Poppins";
+}
+.text-about{
+  text-align: justify;
 }

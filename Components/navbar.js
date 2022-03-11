@@ -38,25 +38,27 @@ export default function navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/about">
+              <Link href="/about">
+                  <a className="nav-link" href="">
                   Tentang Kami
+                  </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link href="/rules">
+                  <a className="nav-link" href="">
+                      Tata Tertib
+                    </a>
+                </Link>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="">
+                  Prestasi
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="">
-                  Tata Tertib
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="">
-                  {" "}
-                  Prestasi{" "}
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="">
-                  {" "}
-                  Pendaftaran{" "}
+                  Pendaftaran
                 </a>
               </li>
             </ul>

@@ -1,19 +1,19 @@
 /* eslint-disable react/no-unescaped-entities */
+import Image from 'next/image'
 export default function Home() {
   return (
     <div>
       <div className="container">
-        <div classNameName="hero mt-2 row">
+        <div className="hero mt-2 row">
           <div className="col-12 col-md-6">
             <div className="text-hero mt-5">
-              <h1> Padepokan Rajawali Perguruan Bela diri </h1>
+              <h1 className='title-banner fs-1'> Padepokan Rajawali Perguruan Bela diri </h1>
             </div>
             <div className="button-hero mt-5">
               <p> Buka hari ini </p>
               <p> Sampai pukul 21.00 </p>
               <input
                 type="text"
-                value="Lokasi : Sawah Besar"
                 className="form-control mt-5"
               ></input>
               <button className="btn btn-primary mt-3">
@@ -22,14 +22,14 @@ export default function Home() {
             </div>
           </div>
           <div className="col-12 col-md-6">
-            {/* <img
-              src="{{ asset('image/banner.jpg') }}"
-              width="100%"
-              height="550px"
-              className="shadow"
-              style="border-radius: 80%"
+            <Image 
+              src="/image/banner.jpg"
+              layout='responsive'
+              className="shadow rounded-circle"
               alt=""
-            ></img> */}
+              width={500}
+              height={500}
+            ></Image>
           </div>
         </div>
         <div className="Galeri my-5">
@@ -38,15 +38,59 @@ export default function Home() {
 
           <div className="image-list row">
             <div className="col-12 col-md-4 mt-3">
-              {/* <img
+              <Image
                 className="rounded shadow"
-                width="100%"
-                height="300px"
-                src=""
-                data-iml="403"
-                data-atf="false"
+                layout='responsive'
+                width={500}
+                height={500}
+                src="/image/img-landing1.jpeg"
+                 alt=""
               >
-              </img> */}
+              </Image>
+            </div>
+            <div className="col-12 col-md-4 mt-3">
+              <Image
+                className="rounded shadow"
+                layout='responsive'
+                width={500}
+                height={500}
+                src="/image/img-landing2.jpg"
+                 alt=""
+              >
+              </Image>
+            </div>
+            <div className="col-12 col-md-4 mt-3">
+              <Image
+                className="rounded shadow"
+                layout='responsive'
+                width={500}
+                height={500}
+                src="/image/img-landing3.jpg"
+                 alt=""
+              >
+              </Image>
+            </div>
+            <div className="col-12 col-md-4 mt-3">
+              <Image
+                className="rounded shadow"
+                layout='responsive'
+                width={500}
+                height={500}
+                src="/image/img-landing4.jpeg"
+                 alt=""
+              >
+              </Image>
+            </div>
+            <div className="col-12 col-md-4 mt-3">
+              <Image
+                className="rounded shadow"
+                layout='responsive'
+                width={500}
+                height={500}
+                src="/image/img-landing5.jpg"
+                 alt=""
+              >
+              </Image>
             </div>
           </div>
         </div>
@@ -58,15 +102,15 @@ export default function Home() {
             <div className="col-12 col-md-4 p-3">
               <div className="row">
                 <div className="col-12 col-md-2">
-                  {/* <img
-                    src="{{ asset('image/profile-achivment.jpg') }}"
-                    width="70px"
-                    height="70px"
+                  <Image
+                    src="/image/profile-achivment.jpg"
+                    layout='responsive'
+                    width={70}
+                    height={70}
                     className="rounded-circle"
                     alt=""
                   >
-                    {" "}
-                  </img> */}
+                  </Image>
                 </div>
                 <div className="col-md-10">
                   <h3> Will Jansen </h3>
@@ -81,15 +125,15 @@ export default function Home() {
             <div className="col-12 col-md-4 p-3">
               <div className="row">
                 <div className="col-12 col-md-2">
-                  {/* <img
-                    src="{{ asset('image/profile-achivment.jpg') }}"
-                    width="70px"
-                    height="70px"
+                <Image
+                    src="/image/profile-achivment.jpg"
+                    layout='responsive'
+                    width={70}
+                    height={70}
                     className="rounded-circle"
                     alt=""
                   >
-                    {" "}
-                  </img> */}
+                  </Image>
                 </div>
                 <div className="col-md-10">
                   <h3> Will Jansen </h3>
@@ -104,15 +148,15 @@ export default function Home() {
             <div className="col-12 col-md-4 p-3">
               <div className="row">
                 <div className="col-12 col-md-2">
-                  {/* <img
-                    src="{{ asset('image/profile-achivment.jpg') }}"
-                    width="70px"
-                    height="70px"
+                <Image
+                    src="/image/profile-achivment.jpg"
+                    layout='responsive'
+                    width={70}
+                    height={70}
                     className="rounded-circle"
                     alt=""
                   >
-                    {" "}
-                  </img> */}
+                  </Image>
                 </div>
                 <div className="col-md-10">
                   <h3> Will Jansen </h3>
@@ -152,14 +196,13 @@ export default function Home() {
             </div>
           </div>
           <div className="col-12 col-md-6">
-            {/* <img
-              src="{{ asset('image/image 5.png') }}"
-              width="100%"
-              height="400px"
+            <Image
+              src="/image/image 5.png"
+              width="500"
+              height="400"
               alt=""
             >
-              {" "}
-            </img> */}
+            </Image>
           </div>
         </div>
       </div>
