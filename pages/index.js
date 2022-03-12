@@ -177,18 +177,18 @@ export default function Home() {
             <p>Hubungi Kami </p>
             <div className="row">
               <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded">
+                <button className="btn btn-info shadow rounded button-contact">
                   <i className="fas fa-comment"></i>
                   WhatsApp
                 </button>
               </div>
               <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded">
+                <button className="btn btn-info shadow rounded button-contact">
                   <i className="fas fa-phone"></i> Telp
                 </button>
               </div>
               <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded">
+                <button className="btn btn-info shadow rounded button-contact">
                   <i className="fas fa-map"></i>
                   Lihat Rute
                 </button>
@@ -198,7 +198,7 @@ export default function Home() {
           <div className="col-12 col-md-6">
             <Image
               src="/image/image 5.png"
-              width="500"
+              width="600"
               height="400"
               alt=""
             >

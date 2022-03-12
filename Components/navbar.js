@@ -1,12 +1,18 @@
 import Link from "next/link";
+import Image from "next/image";
+
 export default function navbar() {
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container">
-          <a className="navbar-brand fw-normal" href="#">
-            PUSBINDIKLAT GEMILANG
-          </a>
+        <Image src="/image/logo.jpeg"
+                     width={40}
+                     height={40}
+                alt="">
+         </Image>
+            <a className="navbar-brand fw-normal " href="#">
+              PUSBINDIKLAT GEMILANG </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -52,9 +58,12 @@ export default function navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="">
-                  Prestasi
-                </a>
+                <Link href="/achievement">
+                  <a className="nav-link" href="">
+                    Prestasi
+                  </a>
+                </Link>
+              
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="">
