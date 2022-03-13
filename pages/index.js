@@ -1,13 +1,25 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image'
-export default function Home() {
+
+export async function getStaticProps() { 
+   const res = await fetch('http://127.0.0.1:8000/api/daftar-gallery')
+  const data = await res.json()
+  return {
+    props: {
+      images : data.data,
+    }
+  }
+}
+
+function Home({images})  {
   return (
     <div>
       <div className="container">
         <div className="hero mt-2 row">
           <div className="col-12 col-md-6">
             <div className="text-hero mt-5">
-              <h1 className='title-banner fs-1'> Padepokan Rajawali Perguruan Bela diri </h1>
+              <h1 className='title-banner fs-1'>  Padepokan Rajawali Perguruan Bela diri </h1>
+            
             </div>
             <div className="button-hero mt-5">
               <p> Buka hari ini </p>
@@ -37,61 +49,19 @@ export default function Home() {
           <p className="text-center"> Foto diambil saat Latihan Bersama </p>
 
           <div className="image-list row">
-            <div className="col-12 col-md-4 mt-3">
-              <Image
-                className="rounded shadow"
-                layout='responsive'
-                width={500}
-                height={500}
-                src="/image/img-landing1.jpeg"
-                 alt=""
-              >
-              </Image>
-            </div>
-            <div className="col-12 col-md-4 mt-3">
-              <Image
-                className="rounded shadow"
-                layout='responsive'
-                width={500}
-                height={500}
-                src="/image/img-landing2.jpg"
-                 alt=""
-              >
-              </Image>
-            </div>
-            <div className="col-12 col-md-4 mt-3">
-              <Image
-                className="rounded shadow"
-                layout='responsive'
-                width={500}
-                height={500}
-                src="/image/img-landing3.jpg"
-                 alt=""
-              >
-              </Image>
-            </div>
-            <div className="col-12 col-md-4 mt-3">
-              <Image
-                className="rounded shadow"
-                layout='responsive'
-                width={500}
-                height={500}
-                src="/image/img-landing4.jpeg"
-                 alt=""
-              >
-              </Image>
-            </div>
-            <div className="col-12 col-md-4 mt-3">
-              <Image
-                className="rounded shadow"
-                layout='responsive'
-                width={500}
-                height={500}
-                src="/image/img-landing5.jpg"
-                 alt=""
-              >
-              </Image>
-            </div>
+            {images.map((image) =>(
+              <div className="col-12 col-md-4 mt-3" key={image.id}>
+                    <Image
+                      className="rounded shadow"
+                      layout='responsive'
+                      width={500}
+                      height={300}
+                      src={image.image}
+                      alt=""
+                    >
+                    </Image>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -209,3 +179,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
