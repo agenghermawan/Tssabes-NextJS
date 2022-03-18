@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap");
 html,
 body {
   padding: 0;
@@ -10,28 +11,242 @@ main {
   font-family: "Poppins";
 }
 
-.title-banner{
+.title-banner {
   font-weight: 700;
-  font-family: "Poppins";
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-size: 2.625rem;
+  color: #0c145a;
 }
-.text-about{
+
+.text-about {
   text-align: justify;
 }
-.button-contact{
+.button-contact {
   width: 130px;
 }
-.font-contact{
+.font-contact {
   font-size: 16px;
   font-weight: 400;
 }
-.title-profile{
+.title-profile {
   font-size: 24;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #4D77FF;
+  color: #4d77ff;
 }
 
-.title-desc{
-  color: #56BBF1;
+.title-desc {
+  color: #56bbf1;
   letter-spacing: 0.2;
+}
+
+.title-desc-page {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.btn-get {
+  background-color: #4d17e2;
+  padding: 0.75rem 3rem;
+  border-radius: 50rem !important;
+  color: white;
+}
+
+.text-starter {
+  font-size: 1.375rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #0c145a;
+}
+
+.desc-starter {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.img-galery {
+  border-radius: 30px;
+}
+
+.reached-title {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  color: #0c145a;
+  text-align: center !important;
+  font-weight: 700 !important;
+}
+
+.reached-text {
+  color: #7e8cac;
+  font-size: 1.125rem;
+  text-align: center;
+  line-height: 1.75rem;
+}
+
+.title-promotion {
+  margin-top: 100px;
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+}
+
+.desc-promotion {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  color: #0c145a;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+/* From cssbuttons.io by @adamgiebl */
+.cssbuttons-io-button {
+  background: #a370f0;
+  color: white;
+  font-family: inherit;
+  padding: 0.35em;
+  padding-left: 1.2em;
+  font-size: 17px;
+  font-weight: 500;
+  border-radius: 0.9em;
+  border: none;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  box-shadow: inset 0 0 1.6em -0.6em #714da6;
+  overflow: hidden;
+  position: relative;
+  height: 2.8em;
+  padding-right: 3.3em;
+}
+
+.cssbuttons-io-button .icon {
+  background: white;
+  margin-left: 1em;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.2em;
+  width: 2.2em;
+  border-radius: 0.7em;
+  box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+  right: 0.3em;
+  transition: all 0.3s;
+}
+
+.cssbuttons-io-button:hover .icon {
+  width: calc(100% - 0.6em);
+}
+
+.cssbuttons-io-button .icon svg {
+  width: 1.1em;
+  transition: transform 0.3s;
+  color: #7b52b9;
+}
+
+.cssbuttons-io-button:hover .icon svg {
+  transform: translateX(0.1em);
+}
+
+.cssbuttons-io-button:active .icon {
+  transform: scale(0.95);
+}
+
+/* From cssbuttons.io by @westitan */
+.button-profile {
+  position: relative;
+  padding: 19px 36px;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  border-radius: 40px;
+  border: none;
+}
+
+button span {
+  position: relative;
+  color: #fff;
+  font-family: Arial;
+  letter-spacing: 8px;
+  z-index: 1;
+}
+
+button .liquid {
+  position: absolute;
+  top: -80px;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #4973ff;
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+button .liquid::after,
+button .liquid::before {
+  content: "";
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  background: #fff;
+}
+
+button .liquid::before {
+  border-radius: 45%;
+  background: rgba(20, 20, 20, 1);
+  animation: animate 5s linear infinite;
+}
+
+button .liquid::after {
+  border-radius: 40%;
+  background: rgba(20, 20, 20, 0.5);
+  animation: animate 10s linear infinite;
+}
+
+button:hover .liquid {
+  top: -120px;
+}
+
+@keyframes animate {
+  0% {
+    transform: translate(-50%, -75%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -75%) rotate(360deg);
+  }
+}
+
+.button-route {
+  font-size: 16px;
+  padding: 1em 3.3em;
+  transform: perspective(200px) rotateX(15deg);
+  color: white;
+  font-weight: 900;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(
+    0deg,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(70, 135, 252, 1) 100%
+  );
+  box-shadow: rgba(63, 94, 251, 0.2) 0px 40px 29px 0px;
+  will-change: transform;
+  transition: all 0.3s;
+  border-bottom: 2px solid rgba(70, 135, 252, 1);
+}
+
+.button-rout:hover {
+  transform: perspective(180px) rotateX(30deg) translateY(2px);
+}
+
+.button-rout:active {
+  transform: perspective(170px) rotateX(36deg) translateY(5px);
 }
