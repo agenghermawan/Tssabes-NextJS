@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export default function Register() {
   const nextForm = () => {
@@ -37,7 +38,7 @@ export default function Register() {
             <p>
               {" "}
               Sebelum melakukan pendaftaran baca terlebih dahulu aturan atau
-              tata tertibnya nya <a href="{{ route('Rules') }}">disini </a>{" "}
+              tata tertibnya nya <Link href="/rules">disini</Link>
             </p>
             <form action="" method="post" encType="multipart/form-data">
               <input type="hidden" name="status" value="PendaftaranUlang" />
