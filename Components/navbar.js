@@ -6,13 +6,10 @@ export default function navbar() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light ">
         <div className="container">
-        <Image src="/image/logo.jpeg"
-                     width={40}
-                     height={40}
-                alt="">
-         </Image>
-            <a className="navbar-brand fw-normal " href="#">
-              PUSBINDIKLAT GEMILANG </a>
+          <Image src="/image/logo.jpeg" width={40} height={40} alt=""></Image>
+          <a className="navbar-brand fw-normal " href="#">
+            PUSBINDIKLAT GEMILANG{" "}
+          </a>
           <button
             className="navbar-toggler"
             type="button"
@@ -44,17 +41,17 @@ export default function navbar() {
                 </Link>
               </li>
               <li className="nav-item">
-              <Link href="/about">
+                <Link href="/about">
                   <a className="nav-link" href="">
-                  Tentang Kami
+                    Tentang Kami
                   </a>
                 </Link>
               </li>
               <li className="nav-item">
                 <Link href="/rules">
                   <a className="nav-link" href="">
-                      Tata Tertib
-                    </a>
+                    Tata Tertib
+                  </a>
                 </Link>
               </li>
               <li className="nav-item">
@@ -63,12 +60,11 @@ export default function navbar() {
                     Prestasi
                   </a>
                 </Link>
-              
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="">
-                  Pendaftaran
-                </a>
+                <Link href="/register">
+                  <a className="nav-link">Pendaftaran</a>
+                </Link>
               </li>
             </ul>
           </div>

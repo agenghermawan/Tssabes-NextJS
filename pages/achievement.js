@@ -1,15 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import axios from "axios";
+import {
+  AchievementRemaja,
+  AchievementSD,
+  AllAchievement,
+} from "../services/achievement";
 
 export default function Achievment() {
   const [prestasiList, setPrestasiList] = useState([]);
-  useEffect(async () => {
-    const response = await axios.get(
-      "http://127.0.0.1:8000/api/daftar-prestasi/remaja"
-    );
-    setPrestasiList(response.data.data);
+  const [prestasiListSD, setPrestasiListSD] = useState([]);
+  const [prestasiListRemaja, setPrestasiListRemaja] = useState([]);
+
+  const getListAchievement = useCallback(async () => {
+    const data = await AllAchievement();
+    const dataSD = await AchievementSD();
+    const dataRemaja = await AchievementRemaja();
+
+    setPrestasiListSD(dataSD);
+    setPrestasiList(data);
+    setPrestasiListRemaja(dataRemaja);
   }, []);
+
+  useEffect(() => {
+    getListAchievement();
+  }, [getListAchievement]);
 
   return (
     <div>
@@ -38,7 +53,7 @@ export default function Achievment() {
               aria-controls="pills-home"
               aria-selected="true"
             >
-              Prestasi SD
+              Semua Prestasi
             </button>
           </li>
           <li className="nav-item" role="presentation">
@@ -66,7 +81,7 @@ export default function Achievment() {
               aria-controls="pills-contact"
               aria-selected="false"
             >
-              Semua Prestasi
+              Prestasi SD
             </button>
           </li>
         </ul>
@@ -80,21 +95,38 @@ export default function Achievment() {
             <div className="row">
               {prestasiList.map((item) => {
                 return (
-                  <div className="col-12 col-md-4 mt-3">
-                    <div className="card text-center" key={item.id}>
+                  <div className="col-12 col-md-4 mt-3" key={item.id}>
+                    <div className="card">
                       <div className="card-header"></div>
                       <div className="card-body">
-                        <h5 className="card-title">{item.namaLengkap}</h5>
-                        <Image
-                          src="/image/archievment.jpg"
-                          width="70px"
-                          height="70px"
-                          className="rounded-circle"
-                          alt=""
-                        />
-                        <a href="#" className="btn btn-primary">
-                          {item.tingkatanSekolah}{" "}
-                        </a>
+                        <h5 className="card-title text-center">
+                          {item.namaLengkap}
+                        </h5>
+                        <div className="for-image text-center">
+                          <Image
+                            src="/image/archievment.jpg"
+                            width="70px"
+                            height="70px"
+                            className="rounded-circle"
+                            alt=""
+                          />
+                        </div>
+
+                        {item.daftarJuara.map((itemList) => {
+                          return (
+                            <div key={itemList.id}>
+                              <p className="card-text mt-3">
+                                <i className="fas fa-trophy "></i>
+                                {itemList.Juara}
+                              </p>
+                            </div>
+                          );
+                        })}
+                        <div className="tingkatanButton text-center">
+                          <a href="#" className="btn btn-primary mt-3">
+                            {item.tingkatanSekolah}{" "}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -109,7 +141,47 @@ export default function Achievment() {
             role="tabpanel"
             aria-labelledby="pills-profile-tab"
           >
-            <div className="row"></div>
+            <div className="row">
+              {prestasiListRemaja.map((item) => {
+                return (
+                  <div className="col-12 col-md-4 mt-3" key={item.id}>
+                    <div className="card">
+                      <div className="card-header"></div>
+                      <div className="card-body">
+                        <h5 className="card-title text-center">
+                          {item.namaLengkap}
+                        </h5>
+                        <div className="for-image text-center">
+                          <Image
+                            src="/image/archievment.jpg"
+                            width="70px"
+                            height="70px"
+                            className="rounded-circle"
+                            alt=""
+                          />
+                        </div>
+
+                        {item.daftarJuara.map((itemList) => {
+                          return (
+                            <div key={itemList.id}>
+                              <p className="card-text mt-3">
+                                <i className="fas fa-trophy "></i>
+                                {itemList.Juara}
+                              </p>
+                            </div>
+                          );
+                        })}
+                        <div className="tingkatanButton text-center">
+                          <a href="#" className="btn btn-primary mt-3">
+                            {item.tingkatanSekolah}{" "}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
           <div
             className="tab-pane fade"
@@ -117,7 +189,47 @@ export default function Achievment() {
             role="tabpanel"
             aria-labelledby="pills-contact-tab"
           >
-            <div className="row"></div>
+            <div className="row">
+              {prestasiListSD.map((item) => {
+                return (
+                  <div className="col-12 col-md-4 mt-3" key={item.id}>
+                    <div className="card">
+                      <div className="card-header"></div>
+                      <div className="card-body">
+                        <h5 className="card-title text-center">
+                          {item.namaLengkap}
+                        </h5>
+                        <div className="for-image text-center">
+                          <Image
+                            src="/image/archievment.jpg"
+                            width="70px"
+                            height="70px"
+                            className="rounded-circle"
+                            alt=""
+                          />
+                        </div>
+
+                        {item.daftarJuara.map((itemList) => {
+                          return (
+                            <div key={itemList.id}>
+                              <p className="card-text mt-3">
+                                <i className="fas fa-trophy "></i>
+                                {itemList.Juara}
+                              </p>
+                            </div>
+                          );
+                        })}
+                        <div className="tingkatanButton text-center">
+                          <a href="#" className="btn btn-primary mt-3">
+                            {item.tingkatanSekolah}{" "}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
