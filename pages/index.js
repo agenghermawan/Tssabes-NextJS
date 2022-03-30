@@ -1,18 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from "next/image";
+import { useState, useCallback, useEffect } from "react";
 import GalleryIndex from "../Components/gallery";
+import { DaftarGallery } from "../services/achievement";
 
-export async function getStaticProps() {
-  const res = await fetch("http://127.0.0.1:8000/api/daftar-gallery");
-  const data = await res.json();
-  return {
-    props: {
-      images: data.data,
-    },
-  };
-}
+export default function Home() {
+  const [listGallery, setListGallery] = useState([]);
 
-function Home({ images }) {
+  const GetListGallery = useCallback(async () => {
+    const data = await DaftarGallery();
+    setListGallery(data);
+  }, []);
+
+  useEffect(() => {
+    GetListGallery();
+  }, [GetListGallery]);
   return (
     <div>
       <div className="container">
@@ -85,11 +87,11 @@ function Home({ images }) {
           <p className="title-desc-page"> Foto diambil saat Latihan Bersama </p>
           <div className="image-list row">
             {/* <GalleryIndex src="img-landing1.jpeg" />
-            <GalleryIndex src="img-landing2.jpg" />
-            <GalleryIndex src="img-landing3.jpg" />
-            <GalleryIndex src="img-landing4.jpeg" />
-            <GalleryIndex src="img-landing5.jpg" /> */}
-            {images.map((image) => (
+          <GalleryIndex src="img-landing2.jpg" />
+          <GalleryIndex src="img-landing3.jpg" />
+          <GalleryIndex src="img-landing4.jpeg" />
+          <GalleryIndex src="img-landing5.jpg" /> */}
+            {listGallery.map((image) => (
               <div className="col-12 col-md-3 mt-3" key={image.id}>
                 <Image
                   className="shadow img-galery"
@@ -121,80 +123,80 @@ function Home({ images }) {
         </div>
 
         {/* <div className="testimonial">
-          <h3 className="text-center title-banner">Testi</h3>
-          <p className="text-center title-desc-page">
-            {" "}
-            Testimoni dari pengguna{" "}
-          </p>
-          <div className="row my-5">
-            <div className="col-12 col-md-4 p-3">
-              <div className="row">
-                <div className="col-12 col-md-2">
-                  <Image
-                    src="/image/profile-achivment.jpg"
-                    layout="responsive"
-                    width={70}
-                    height={70}
-                    className="rounded-circle"
-                    alt=""
-                  ></Image>
-                </div>
-                <div className="col-md-10">
-                  <h3> Will Jansen </h3>
-                  <p> Peserta</p>
-                </div>
+        <h3 className="text-center title-banner">Testi</h3>
+        <p className="text-center title-desc-page">
+          {" "}
+          Testimoni dari pengguna{" "}
+        </p>
+        <div className="row my-5">
+          <div className="col-12 col-md-4 p-3">
+            <div className="row">
+              <div className="col-12 col-md-2">
+                <Image
+                  src="/image/profile-achivment.jpg"
+                  layout="responsive"
+                  width={70}
+                  height={70}
+                  className="rounded-circle"
+                  alt=""
+                ></Image>
               </div>
-              <p className="fw-light mt-2">
-                "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
-                untuk olahraga"
-              </p>
-            </div>
-            <div className="col-12 col-md-4 p-3">
-              <div className="row">
-                <div className="col-12 col-md-2">
-                  <Image
-                    src="/image/profile-achivment.jpg"
-                    layout="responsive"
-                    width={70}
-                    height={70}
-                    className="rounded-circle"
-                    alt=""
-                  ></Image>
-                </div>
-                <div className="col-md-10">
-                  <h3> Will Jansen </h3>
-                  <p> Peserta</p>
-                </div>
+              <div className="col-md-10">
+                <h3> Will Jansen </h3>
+                <p> Peserta</p>
               </div>
-              <p className="fw-light mt-2">
-                "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
-                untuk olahraga"
-              </p>
             </div>
-            <div className="col-12 col-md-4 p-3">
-              <div className="row">
-                <div className="col-12 col-md-2">
-                  <Image
-                    src="/image/profile-achivment.jpg"
-                    layout="responsive"
-                    width={70}
-                    height={70}
-                    className="rounded-circle"
-                    alt=""
-                  ></Image>
-                </div>
-                <div className="col-md-10">
-                  <h3> Will Jansen </h3>
-                  <p> Peserta</p>
-                </div>
-              </div>
-              <p className="fw-light mt-2">
-                "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
-                untuk olahraga"
-              </p>
-            </div>
+            <p className="fw-light mt-2">
+              "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
+              untuk olahraga"
+            </p>
           </div>
-        </div> */}
+          <div className="col-12 col-md-4 p-3">
+            <div className="row">
+              <div className="col-12 col-md-2">
+                <Image
+                  src="/image/profile-achivment.jpg"
+                  layout="responsive"
+                  width={70}
+                  height={70}
+                  className="rounded-circle"
+                  alt=""
+                ></Image>
+              </div>
+              <div className="col-md-10">
+                <h3> Will Jansen </h3>
+                <p> Peserta</p>
+              </div>
+            </div>
+            <p className="fw-light mt-2">
+              "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
+              untuk olahraga"
+            </p>
+          </div>
+          <div className="col-12 col-md-4 p-3">
+            <div className="row">
+              <div className="col-12 col-md-2">
+                <Image
+                  src="/image/profile-achivment.jpg"
+                  layout="responsive"
+                  width={70}
+                  height={70}
+                  className="rounded-circle"
+                  alt=""
+                ></Image>
+              </div>
+              <div className="col-md-10">
+                <h3> Will Jansen </h3>
+                <p> Peserta</p>
+              </div>
+            </div>
+            <p className="fw-light mt-2">
+              "Kegiatan positif Tapak Suci, selain bela diri seni juga bisa
+              untuk olahraga"
+            </p>
+          </div>
+        </div>
+      </div> */}
 
         <div className="row">
           <div className="col-12 col-md-6">
@@ -234,41 +236,39 @@ function Home({ images }) {
         </div>
 
         {/* <div className="care row mt-5">
-          <div className="col-12 col-md-6 mt-5">
-            <h1> Punya Pertanyaan Kepada Kami ? </h1>
-            <p>Hubungi Kami </p>
-            <div className="row">
-              <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded button-contact">
-                  <i className="fas fa-comment"></i>
-                  WhatsApp
-                </button>
-              </div>
-              <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded button-contact">
-                  <i className="fas fa-phone"></i> Telp
-                </button>
-              </div>
-              <div className="col-12 col-md-3 mb-1">
-                <button className="btn btn-info shadow rounded button-contact">
-                  <i className="fas fa-map"></i>
-                  Lihat Rute
-                </button>
-              </div>
+        <div className="col-12 col-md-6 mt-5">
+          <h1> Punya Pertanyaan Kepada Kami ? </h1>
+          <p>Hubungi Kami </p>
+          <div className="row">
+            <div className="col-12 col-md-3 mb-1">
+              <button className="btn btn-info shadow rounded button-contact">
+                <i className="fas fa-comment"></i>
+                WhatsApp
+              </button>
+            </div>
+            <div className="col-12 col-md-3 mb-1">
+              <button className="btn btn-info shadow rounded button-contact">
+                <i className="fas fa-phone"></i> Telp
+              </button>
+            </div>
+            <div className="col-12 col-md-3 mb-1">
+              <button className="btn btn-info shadow rounded button-contact">
+                <i className="fas fa-map"></i>
+                Lihat Rute
+              </button>
             </div>
           </div>
-          <div className="col-12 col-md-6">
-            <Image
-              src="/image/image 5.png"
-              width="600"
-              height="400"
-              alt=""
-            ></Image>
-          </div>
-        </div> */}
+        </div>
+        <div className="col-12 col-md-6">
+          <Image
+            src="/image/image 5.png"
+            width="600"
+            height="400"
+            alt=""
+          ></Image>
+        </div>
+      </div> */}
       </div>
     </div>
   );
 }
-
-export default Home;

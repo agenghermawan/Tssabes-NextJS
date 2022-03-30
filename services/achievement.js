@@ -23,3 +23,9 @@ export async function AchievementRemaja() {
   const dataListRemaja = response.data;
   return dataListRemaja.data;
 }
+
+export async function DaftarGallery() {
+  const response = await axios.get("http://tssabes.my.id/api/daftar-gallery");
+  const listGallery = response.data;
+  return listGallery.data;
+}
