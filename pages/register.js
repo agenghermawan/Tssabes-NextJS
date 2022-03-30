@@ -1,9 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Register() {
+  const [email, setEmail] = useState('');
   const nextForm = () => {
     const firstForm = document.getElementById("first-form");
     const secondForm = document.getElementById("second-form");
@@ -26,6 +27,11 @@ export default function Register() {
       firstForm.style.display = "block";
     }
   };
+
+  const onSubmit = () => {
+   
+  }
+
   return (
     <>
       <div className="container">
@@ -51,7 +57,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="namaLengkap"
-                        value=""
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
                   </div>
