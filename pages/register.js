@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function Register() {
   const [email, setEmail] = useState('');
+  const []
   const nextForm = () => {
     const firstForm = document.getElementById("first-form");
     const secondForm = document.getElementById("second-form");
