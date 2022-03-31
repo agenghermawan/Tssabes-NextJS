@@ -1,9 +1,7 @@
 import axios from "axios";
 
 export async function AllAchievement() {
-  const response = await axios.get(
-    "http://tssabes.my.id/api/daftar-prestasi/"
-  );
+  const response = await axios.get("http://tssabes.my.id/api/daftar-prestasi/");
   const dataList = response.data;
   return dataList.data;
 }
