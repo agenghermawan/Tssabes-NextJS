@@ -2,10 +2,11 @@ import React from "react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function Register() {
-  const [email, setEmail] = useState('');
-  const []
+  const [email, setEmail] = useState("");
+  const [namaLengkap, setNamaLengkap] = useState("");
   const nextForm = () => {
     const firstForm = document.getElementById("first-form");
     const secondForm = document.getElementById("second-form");
@@ -28,10 +29,16 @@ export default function Register() {
       firstForm.style.display = "block";
     }
   };
+  const router = useRouter();
 
   const onSubmit = () => {
-   
-  }
+    const form = {
+      email,
+      namaLengkap,
+    };
+    localStorage.setItem("form", JSON.stringify(form));
+    router.push("/");
+  };
 
   return (
     <>
@@ -71,7 +78,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="email"
-                        value=""
+                        value={namaLengkap}
+                        onChange={(event) => setNamaLengkap(event.target.value)}
                       />
                     </div>
                   </div>
@@ -303,14 +311,13 @@ export default function Register() {
                     <button
                       type="button"
                       className="btn btn-info"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
+                      onClick={onSubmit}
                     >
                       Lakukan Pendaftaran
                     </button>
                   </div>
                 </div>
-
+                {/* 
                 <div
                   className="modal fade"
                   id="exampleModal"
@@ -349,7 +356,7 @@ export default function Register() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </form>
           </div>
