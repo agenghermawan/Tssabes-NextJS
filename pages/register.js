@@ -3,10 +3,29 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { signUp } from "../services/achievement";
 
 export default function Register() {
   const [email, setEmail] = useState("");
   const [namaLengkap, setNamaLengkap] = useState("");
+  const [tempatLahir, setTempatLahir] = useState("");
+  const [tanggalLahir, setTanggalLahir] = useState("");
+  const [jenisKelamin, setJenisKelamin] = useState("");
+  const [usia, setusia] = useState("");
+  const [tinggiBadan, setTinggiBadan] = useState("");
+  const [beratBadan, setberatBadan] = useState("");
+  const [agama, setagama] = useState("");
+  const [asalSekolah, setasalSekolah] = useState("");
+  const [tingkatanSekolah, settingkatanSekolah] = useState("");
+  const [unitLatihan, setunitLatihan] = useState("");
+  const [tingkatanSabuk, settingkatanSabuk] = useState("");
+  const [riwayatKesehatan, setriwayatKesehatan] = useState("");
+  const [alamat, setalamat] = useState("");
+  const [noTelp, setnoTelp] = useState("");
+  const [foto, setfoto] = useState("");
+  const [akte, setakte] = useState("");
+  const [status, setStatus] = useState("Daftar Baru");
+
   const nextForm = () => {
     const firstForm = document.getElementById("first-form");
     const secondForm = document.getElementById("second-form");
@@ -31,13 +50,30 @@ export default function Register() {
   };
   const router = useRouter();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const form = {
       email,
       namaLengkap,
+      tempatLahir,
+      tanggalLahir,
+      jenisKelamin,
+      usia,
+      tinggiBadan,
+      beratBadan,
+      agama,
+      asalSekolah,
+      tingkatanSabuk,
+      tingkatanSekolah,
+      unitLatihan,
+      riwayatKesehatan,
+      alamat,
+      noTelp,
+      foto,
+      akte,
     };
     localStorage.setItem("form", JSON.stringify(form));
-    router.push("/");
+    const result = await signUp(form);
+    console.log(result);
   };
 
   return (
@@ -55,7 +91,7 @@ export default function Register() {
               tata tertibnya nya <Link href="/rules">disini</Link>
             </p>
             <form action="" method="post" encType="multipart/form-data">
-              <input type="hidden" name="status" value="PendaftaranUlang" />
+              <input type="hidden" name="status" value={status} />
               <div className="first-form" id="first-form">
                 <div className="row mb-3">
                   <div className="col-md-6">
@@ -91,8 +127,8 @@ export default function Register() {
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
-                        name="tempatLahir"
-                        value=""
+                        value={tempatLahir}
+                        onChange={(event) => setTempatLahir(event.target.value)}
                       />
                     </div>
                   </div>
@@ -104,7 +140,10 @@ export default function Register() {
                         type="date"
                         className="form-control shadow-sm rounded-xl"
                         name="tanggalLahir"
-                        value=""
+                        value={tanggalLahir}
+                        onChange={(event) =>
+                          setTanggalLahir(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -117,6 +156,10 @@ export default function Register() {
                         name="jenisKelamin"
                         className="form-control"
                         id="jenisKelamin"
+                        value={jenisKelamin}
+                        onChange={(event) =>
+                          setJenisKelamin(event.target.value)
+                        }
                       >
                         <option value="LakiLaki"> Laki Laki </option>
                         <option value="Perempuan"> Perempuan </option>
@@ -131,7 +174,8 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="usia"
-                        value=""
+                        value={usia}
+                        onChange={(event) => setusia(event.target.value)}
                       />
                     </div>
                   </div>
@@ -144,7 +188,8 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="tinggiBadan"
-                        value=""
+                        value={tinggiBadan}
+                        onChange={(event) => setTinggiBadan(event.target.value)}
                       />
                     </div>
                   </div>
@@ -156,7 +201,8 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="beratBadan"
-                        value=""
+                        value={beratBadan}
+                        onChange={(event) => setberatBadan(event.target.value)}
                       />
                     </div>
                   </div>
@@ -165,7 +211,13 @@ export default function Register() {
                   <div className="col-md-6">
                     <div className="form-group">
                       <label htmlFor="email"> Agama :</label>
-                      <select name="agama" className="form-control" id="agama">
+                      <select
+                        name="agama"
+                        className="form-control"
+                        id="agama"
+                        value={agama}
+                        onChange={(event) => setagama(event.target.value)}
+                      >
                         <option value="Islam"> Islam </option>
                         <option value="Hindu"> Hindu </option>
                         <option value="Budha"> Budha </option>
@@ -180,7 +232,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="asalSekolah"
-                        value=""
+                        value={asalSekolah}
+                        onChange={(event) => setasalSekolah(event.target.value)}
                       />
                     </div>
                   </div>
@@ -196,7 +249,10 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="tingkatanSekolah"
-                        value=""
+                        value={tingkatanSekolah}
+                        onChange={(event) =>
+                          settingkatanSekolah(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -208,7 +264,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="unitLatihan"
-                        value=""
+                        value={unitLatihan}
+                        onChange={(event) => setunitLatihan(event.target.value)}
                       />
                     </div>
                   </div>
@@ -220,8 +277,10 @@ export default function Register() {
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
-                        name="tingkatanSabuk"
-                        value=""
+                        value={tingkatanSabuk}
+                        onChange={(event) =>
+                          settingkatanSabuk(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -233,7 +292,10 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="riwayatKesehatan"
-                        value=""
+                        value={riwayatKesehatan}
+                        onChange={(event) =>
+                          setriwayatKesehatan(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -246,7 +308,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="alamat"
-                        value=""
+                        value={alamat}
+                        onChange={(event) => setalamat(event.target.value)}
                       />
                     </div>
                   </div>
@@ -257,22 +320,12 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="noTelp"
-                        value=""
+                        value={noTelp}
+                        onChange={(event) => setnoTelp(event.target.value)}
                       />
                     </div>
                   </div>
                 </div>
-                <a className="btn btn-info" id="hide" onClick={nextForm}>
-                  {" "}
-                  Selanjutnya{" "}
-                </a>
-              </div>
-
-              <div
-                className="row my-3"
-                id="second-form"
-                style={{ display: "none" }}
-              >
                 <div className="col-md-12 my-3">
                   <label htmlFor="foto" className="mb-2">
                     {" "}
@@ -282,7 +335,8 @@ export default function Register() {
                     type="file"
                     className="form-control"
                     name="foto"
-                    value=""
+                    value={foto}
+                    onChange={(event) => setfoto(event.target.value)}
                   />
                 </div>
                 <div className="col-md-12">
@@ -294,69 +348,17 @@ export default function Register() {
                     type="file"
                     className="form-control"
                     name="akte"
-                    value=""
+                    value={akte}
+                    onChange={(event) => setakte(event.target.value)}
                   />
                 </div>
-                <div className="row">
-                  <div className="container">
-                    <a
-                      type="submit"
-                      className="btn btn-info my-2"
-                      id="back"
-                      onClick={back}
-                    >
-                      {" "}
-                      Kembali{" "}
-                    </a>
-                    <button
-                      type="button"
-                      className="btn btn-info"
-                      onClick={onSubmit}
-                    >
-                      Lakukan Pendaftaran
-                    </button>
-                  </div>
-                </div>
-                {/* 
-                <div
-                  className="modal fade"
-                  id="exampleModal"
-                  tabIndex="-1"
-                  aria-labelledby="exampleModalLabel"
-                  aria-hidden="true"
+                <button
+                  type="button"
+                  className="btn btn-info my-3"
+                  onClick={onSubmit}
                 >
-                  <div className="modal-dialog">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">
-                          Konfirmasi Pendaftaran
-                        </h5>
-                        <button
-                          type="button"
-                          className="btn-close"
-                          data-bs-dismiss="modal"
-                          aria-label="Close"
-                        ></button>
-                      </div>
-                      <div className="modal-body">
-                        Apakah data yang dimasukan sudah benar ?
-                      </div>
-                      <div className="modal-footer">
-                        <button
-                          type="button"
-                          className="btn btn-secondary"
-                          data-bs-dismiss="modal"
-                        >
-                          {" "}
-                          Keluar
-                        </button>
-                        <button type="submit" className="btn btn-primary">
-                          Lakukan Pendaftaran Sekarang
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+                  Lakukan Pendaftaran Sekarang
+                </button>
               </div>
             </form>
           </div>

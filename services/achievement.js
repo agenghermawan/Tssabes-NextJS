@@ -1,4 +1,5 @@
 import axios from "axios";
+import { nextCsrf } from "next-csrf";
 
 export async function AllAchievement() {
   const response = await axios.get("http://tssabes.my.id/api/daftar-prestasi/");
@@ -24,6 +25,16 @@ export async function AchievementRemaja() {
 
 export async function DaftarGallery() {
   const response = await axios.get("http://tssabes.my.id/api/daftar-gallery");
+  const listGallery = response.data;
+  return listGallery.data;
+}
+
+export async function signUp(data) {
+  const response = await axios.post("http://127.0.0.1:8000/api/daftar-ulang", {
+    headers: {
+      "XSRF-TOKEN": nextCsrf,
+    },
+  });
   const listGallery = response.data;
   return listGallery.data;
 }
