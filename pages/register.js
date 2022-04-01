@@ -1,9 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { signUp } from "../services/achievement";
+import { csrfToken } from "next-csrf";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Register() {
   const [email, setEmail] = useState("");
@@ -22,58 +26,54 @@ export default function Register() {
   const [riwayatKesehatan, setriwayatKesehatan] = useState("");
   const [alamat, setalamat] = useState("");
   const [noTelp, setnoTelp] = useState("");
-  const [foto, setfoto] = useState("");
-  const [akte, setakte] = useState("");
+  const [foto, setfoto] = useState(null);
+  const [akte, setakte] = useState(null);
   const [status, setStatus] = useState("Daftar Baru");
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState([]);
 
-  const nextForm = () => {
-    const firstForm = document.getElementById("first-form");
-    const secondForm = document.getElementById("second-form");
+  const onSubmit = async (event) => {
+    event.preventDefault();
 
-    if (firstForm.style.display === "none") {
-      firstForm.style.display = "block";
+    const data = new FormData();
+
+    data.append("email", email);
+    data.append("namaLengkap", namaLengkap);
+    data.append("tempatLahir", tempatLahir);
+    data.append("tanggalLahir", tanggalLahir);
+    data.append("jenisKelamin", jenisKelamin);
+    data.append("usia", usia);
+    data.append("tinggiBadan", tinggiBadan);
+    data.append("beratBadan", beratBadan);
+    data.append("agama", agama);
+    data.append("asalSekolah", asalSekolah);
+    data.append("tingkatanSabuk", tingkatanSabuk);
+    data.append("tingkatanSekolah", tingkatanSekolah);
+    data.append("unitLatihan", unitLatihan);
+    data.append("riwayatKesehatan", riwayatKesehatan);
+    data.append("alamat", alamat);
+    data.append("noTelp", noTelp);
+    data.append("foto", foto);
+    data.append("akte", akte);
+    data.append("status", "Daftar Baru");
+    const response = await axios
+      .post("http://tssabes.my.id/api/daftar-ulang", data, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "content-type": "multipart/form-data",
+        },
+        withCredehtials: true,
+      })
+      .catch((err) => err.response);
+    if (response.data.errors) {
+      toast.error("Data yang anda masukan salah");
+      setErrors(Object.values(response.data.errors).flat());
     } else {
-      firstForm.style.display = "none";
-      secondForm.style.display = "block";
+      setSuccess("Berhasil Mendaftar ");
+      toast.success(
+        "Berhasil Daftar Baru Silahkan menunggu pihak kami akan mengehubungi mu "
+      );
     }
-  };
-
-  const back = () => {
-    const firstForm = document.getElementById("first-form");
-    const secondForm = document.getElementById("second-form");
-    if (secondForm.style.display === "none") {
-      firstForm.style.display = "block";
-    } else {
-      secondForm.style.display = "none";
-      firstForm.style.display = "block";
-    }
-  };
-  const router = useRouter();
-
-  const onSubmit = async () => {
-    const form = {
-      email,
-      namaLengkap,
-      tempatLahir,
-      tanggalLahir,
-      jenisKelamin,
-      usia,
-      tinggiBadan,
-      beratBadan,
-      agama,
-      asalSekolah,
-      tingkatanSabuk,
-      tingkatanSekolah,
-      unitLatihan,
-      riwayatKesehatan,
-      alamat,
-      noTelp,
-      foto,
-      akte,
-    };
-    localStorage.setItem("form", JSON.stringify(form));
-    const result = await signUp(form);
-    console.log(result);
   };
 
   return (
@@ -90,7 +90,12 @@ export default function Register() {
               Sebelum melakukan pendaftaran baca terlebih dahulu aturan atau
               tata tertibnya nya <Link href="/rules">disini</Link>
             </p>
-            <form action="" method="post" encType="multipart/form-data">
+            <ul className="mt-3 list-disc list-inside text-sm text-red-600">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+            <form>
               <input type="hidden" name="status" value={status} />
               <div className="first-form" id="first-form">
                 <div className="row mb-3">
@@ -101,8 +106,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="namaLengkap"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        value={namaLengkap}
+                        onChange={(event) => setNamaLengkap(event.target.value)}
                       />
                     </div>
                   </div>
@@ -114,8 +119,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="email"
-                        value={namaLengkap}
-                        onChange={(event) => setNamaLengkap(event.target.value)}
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
                       />
                     </div>
                   </div>
@@ -126,6 +131,7 @@ export default function Register() {
                       <label htmlFor="email"> Tempat Lahir :</label>
                       <input
                         type="text"
+                        name="tempatLahir"
                         className="form-control shadow-sm rounded-xl"
                         value={tempatLahir}
                         onChange={(event) => setTempatLahir(event.target.value)}
@@ -161,6 +167,7 @@ export default function Register() {
                           setJenisKelamin(event.target.value)
                         }
                       >
+                        <option> Pilih Jenis Kelamin </option>
                         <option value="LakiLaki"> Laki Laki </option>
                         <option value="Perempuan"> Perempuan </option>
                       </select>
@@ -218,6 +225,7 @@ export default function Register() {
                         value={agama}
                         onChange={(event) => setagama(event.target.value)}
                       >
+                        <option> Pilih Agama </option>
                         <option value="Islam"> Islam </option>
                         <option value="Hindu"> Hindu </option>
                         <option value="Budha"> Budha </option>
@@ -334,9 +342,12 @@ export default function Register() {
                   <input
                     type="file"
                     className="form-control"
-                    name="foto"
-                    value={foto}
-                    onChange={(event) => setfoto(event.target.value)}
+                    accept="image/png image/jpeg"
+                    onChange={(event) => {
+                      console.log(event.target.files);
+                      const image = event.target.files[0];
+                      return setfoto(image);
+                    }}
                   />
                 </div>
                 <div className="col-md-12">
@@ -348,15 +359,15 @@ export default function Register() {
                     type="file"
                     className="form-control"
                     name="akte"
-                    value={akte}
-                    onChange={(event) => setakte(event.target.value)}
+                    accept="image/png image/jpeg"
+                    onChange={(event) => {
+                      console.log(event.target.files);
+                      const image = event.target.files[0];
+                      return setakte(image);
+                    }}
                   />
                 </div>
-                <button
-                  type="button"
-                  className="btn btn-info my-3"
-                  onClick={onSubmit}
-                >
+                <button onClick={onSubmit} className="btn btn-info my-3">
                   Lakukan Pendaftaran Sekarang
                 </button>
               </div>
@@ -364,6 +375,17 @@ export default function Register() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </>
   );
 }

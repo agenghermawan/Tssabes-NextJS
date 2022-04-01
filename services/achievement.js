@@ -1,5 +1,5 @@
 import axios from "axios";
-import { nextCsrf } from "next-csrf";
+import { csrfToken } from "next-csrf";
 
 export async function AllAchievement() {
   const response = await axios.get("http://tssabes.my.id/api/daftar-prestasi/");
@@ -30,11 +30,19 @@ export async function DaftarGallery() {
 }
 
 export async function signUp(data) {
-  const response = await axios.post("http://127.0.0.1:8000/api/daftar-ulang", {
-    headers: {
-      "XSRF-TOKEN": nextCsrf,
-    },
-  });
-  const listGallery = response.data;
-  return listGallery.data;
+  // const response = await fetch("http://127.0.0.1:8000/api/daftar-ulang", {
+  //   mode: "no-cors",
+  //   headers: {
+  //     "XSRF-TOKEN": csrfToken,
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     "X-Requested-With": "XMLHttpRequest",
+  //   },
+  //   method: "post",
+  //   body: JSON.stringify(data),
+  // });
+  // const response = await axios.post(
+  //   "http://127.0.0.1:8000/api/daftar-ulang",
+  //   data
+  // );
 }
