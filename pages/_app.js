@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
       <Script
         src="https://kit.fontawesome.com/c0a3e80385.js"
         crossorigin="anonymous"
-      />
+      ></Script>
       <Script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" />
       <Layout>
         <Component {...pageProps} />;

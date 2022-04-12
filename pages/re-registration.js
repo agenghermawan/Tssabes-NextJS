@@ -28,73 +28,52 @@ export default function Register() {
   const [noTelp, setnoTelp] = useState("");
   const [foto, setfoto] = useState(null);
   const [akte, setakte] = useState(null);
+  const [status, setStatus] = useState("Daftar Baru");
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState([]);
 
-  const router = useRouter();
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    const userForm = {
-      email,
-      namaLengkap,
-      tempatLahir,
-      tanggalLahir,
-      jenisKelamin,
-      usia,
-      tinggiBadan,
-      beratBadan,
-      agama,
-      asalSekolah,
-      tingkatanSabuk,
-      tingkatanSekolah,
-      unitLatihan,
-      riwayatKesehatan,
-      alamat,
-      noTelp,
-      foto,
-      akte,
-    };
-    localStorage.setItem("user-form", JSON.stringify(userForm));
-    router.push("/sign-up");
+    const data = new FormData();
 
-    // const data = new FormData();
-
-    // data.append("email", email);
-    // data.append("namaLengkap", namaLengkap);
-    // data.append("tempatLahir", tempatLahir);
-    // data.append("tanggalLahir", tanggalLahir);
-    // data.append("jenisKelamin", jenisKelamin);
-    // data.append("usia", usia);
-    // data.append("tinggiBadan", tinggiBadan);
-    // data.append("beratBadan", beratBadan);
-    // data.append("agama", agama);
-    // data.append("asalSekolah", asalSekolah);
-    // data.append("tingkatanSabuk", tingkatanSabuk);
-    // data.append("tingkatanSekolah", tingkatanSekolah);
-    // data.append("unitLatihan", unitLatihan);
-    // data.append("riwayatKesehatan", riwayatKesehatan);
-    // data.append("alamat", alamat);
-    // data.append("noTelp", noTelp);
-    // data.append("foto", foto);
-    // data.append("akte", akte);
-    // data.append("status", "Daftar Baru");
-    // const response = await axios
-    //   .post("http://tssabes.my.id/api/daftar-ulang", data, {
-    //     headers: {
-    //       "X-Requested-With": "XMLHttpRequest",
-    //       "content-type": "multipart/form-data",
-    //     },
-    //     withCredehtials: true,
-    //   })
-    //   .catch((err) => err.response);
-    // if (response.data.errors) {
-    //   toast.error("Data yang anda masukan salah");
-    //   setErrors(Object.values(response.data.errors).flat());
-    // } else {
-    //   setSuccess("Berhasil Mendaftar ");
-    //   toast.success(
-    //     "Berhasil Daftar Baru Silahkan menunggu pihak kami akan mengehubungi mu "
-    //   );
-    // }
+    data.append("email", email);
+    data.append("namaLengkap", namaLengkap);
+    data.append("tempatLahir", tempatLahir);
+    data.append("tanggalLahir", tanggalLahir);
+    data.append("jenisKelamin", jenisKelamin);
+    data.append("usia", usia);
+    data.append("tinggiBadan", tinggiBadan);
+    data.append("beratBadan", beratBadan);
+    data.append("agama", agama);
+    data.append("asalSekolah", asalSekolah);
+    data.append("tingkatanSabuk", tingkatanSabuk);
+    data.append("tingkatanSekolah", tingkatanSekolah);
+    data.append("unitLatihan", unitLatihan);
+    data.append("riwayatKesehatan", riwayatKesehatan);
+    data.append("alamat", alamat);
+    data.append("noTelp", noTelp);
+    data.append("foto", foto);
+    data.append("akte", akte);
+    data.append("status", "Daftar Ulang");
+    const response = await axios
+      .post("http://tssabes.my.id/api/daftar-ulang", data, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "content-type": "multipart/form-data",
+        },
+        withCredehtials: true,
+      })
+      .catch((err) => err.response);
+    if (response.data.errors) {
+      toast.error("Data yang anda masukan salah");
+      setErrors(Object.values(response.data.errors).flat());
+    } else {
+      setSuccess("Berhasil Mendaftar ");
+      toast.success(
+        "Berhasil Daftar Baru Silahkan menunggu pihak kami akan mengehubungi mu "
+      );
+    }
   };
 
   return (
@@ -105,13 +84,19 @@ export default function Register() {
             <Image src="/image/image.jpg" width="600px" height="400px" alt="" />
           </div>
           <div className="col-12 col-md-6">
-            <h3> Pendaftaran </h3>
+            <h3> Pendaftaran Ulang</h3>
             <p>
               {" "}
               Sebelum melakukan pendaftaran baca terlebih dahulu aturan atau
               tata tertibnya nya <Link href="/rules">disini</Link>
             </p>
+            <ul className="mt-3 list-disc list-inside text-sm text-red-600">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
             <form>
+              <input type="hidden" name="status" value={status} />
               <div className="first-form" id="first-form">
                 <div className="row mb-3">
                   <div className="col-md-6">
@@ -386,7 +371,7 @@ export default function Register() {
                   className="cssbuttons-io-button mt-3"
                   onClick={onSubmit}
                 >
-                  Selanjutnya
+                  Lakukan Pendaftaran Ulang Sekarang
                   <div className="icon">
                     <svg
                       height="24"

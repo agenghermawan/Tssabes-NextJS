@@ -9,92 +9,64 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function Register() {
-  const [email, setEmail] = useState("");
-  const [namaLengkap, setNamaLengkap] = useState("");
-  const [tempatLahir, setTempatLahir] = useState("");
-  const [tanggalLahir, setTanggalLahir] = useState("");
-  const [jenisKelamin, setJenisKelamin] = useState("");
-  const [usia, setusia] = useState("");
-  const [tinggiBadan, setTinggiBadan] = useState("");
-  const [beratBadan, setberatBadan] = useState("");
-  const [agama, setagama] = useState("");
-  const [asalSekolah, setasalSekolah] = useState("");
-  const [tingkatanSekolah, settingkatanSekolah] = useState("");
-  const [unitLatihan, setunitLatihan] = useState("");
-  const [tingkatanSabuk, settingkatanSabuk] = useState("");
-  const [riwayatKesehatan, setriwayatKesehatan] = useState("");
-  const [alamat, setalamat] = useState("");
-  const [noTelp, setnoTelp] = useState("");
-  const [foto, setfoto] = useState(null);
-  const [akte, setakte] = useState(null);
+export default function SignUp() {
+  const [emailParent, setEmailParent] = useState("");
+  const [namaLengkapParent, setNamaLengkapParent] = useState("");
+  const [tempatLahirParent, setTempatLahirParent] = useState("");
+  const [tanggalLahirParent, setTanggalLahirParent] = useState("");
+  const [jenisKelaminParent, setJenisKelaminParent] = useState("");
+  const [usiaParent, setUsiaParent] = useState("");
+  const [tinggiBadanParent, setTinggiBadanParent] = useState("");
+  const [beratBadanParent, setBeratBadanParent] = useState("");
+  const [agamaParent, setAgamaParent] = useState("");
+  const [pekerjaanParent, setPekerjaanParent] = useState("");
+  const [alamatParent, setAlamatParent] = useState("");
+  const [noTelpParent, setnoTelpParent] = useState("");
+  const [fotoParent, setFotoParent] = useState("");
 
-  const router = useRouter();
+  const [status, setStatus] = useState("Daftar Baru");
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState([]);
+
   const onSubmit = async (event) => {
     event.preventDefault();
+    const localForm = localStorage.getItem("user-form");
+    const userForm = JSON.parse(localForm);
+    const data = new FormData();
 
-    const userForm = {
-      email,
-      namaLengkap,
-      tempatLahir,
-      tanggalLahir,
-      jenisKelamin,
-      usia,
-      tinggiBadan,
-      beratBadan,
-      agama,
-      asalSekolah,
-      tingkatanSabuk,
-      tingkatanSekolah,
-      unitLatihan,
-      riwayatKesehatan,
-      alamat,
-      noTelp,
-      foto,
-      akte,
-    };
-    localStorage.setItem("user-form", JSON.stringify(userForm));
-    router.push("/sign-up");
+    data.append("emailParent", emailParent);
+    data.append("namaLengkapParent", namaLengkapParent);
+    data.append("tempatLahirParent", tempatLahirParent);
+    data.append("tanggalLahirParent", tanggalLahirParent);
+    data.append("jenisKelaminParent", jenisKelaminParent);
+    data.append("usiaParent", usiaParent);
+    data.append("tinggiBadanParent", tinggiBadanParent);
+    data.append("beratBadanParent", beratBadanParent);
+    data.append("agamaParent", agamaParent);
+    data.append("pekerjaanParent", pekerjaanParent);
+    data.append("alamatParent", alamatParent);
+    data.append("noTelpParent", noTelpParent);
+    data.append("fotoParent", fotoParent);
 
-    // const data = new FormData();
-
-    // data.append("email", email);
-    // data.append("namaLengkap", namaLengkap);
-    // data.append("tempatLahir", tempatLahir);
-    // data.append("tanggalLahir", tanggalLahir);
-    // data.append("jenisKelamin", jenisKelamin);
-    // data.append("usia", usia);
-    // data.append("tinggiBadan", tinggiBadan);
-    // data.append("beratBadan", beratBadan);
-    // data.append("agama", agama);
-    // data.append("asalSekolah", asalSekolah);
-    // data.append("tingkatanSabuk", tingkatanSabuk);
-    // data.append("tingkatanSekolah", tingkatanSekolah);
-    // data.append("unitLatihan", unitLatihan);
-    // data.append("riwayatKesehatan", riwayatKesehatan);
-    // data.append("alamat", alamat);
-    // data.append("noTelp", noTelp);
-    // data.append("foto", foto);
-    // data.append("akte", akte);
-    // data.append("status", "Daftar Baru");
-    // const response = await axios
-    //   .post("http://tssabes.my.id/api/daftar-ulang", data, {
-    //     headers: {
-    //       "X-Requested-With": "XMLHttpRequest",
-    //       "content-type": "multipart/form-data",
-    //     },
-    //     withCredehtials: true,
-    //   })
-    //   .catch((err) => err.response);
-    // if (response.data.errors) {
-    //   toast.error("Data yang anda masukan salah");
-    //   setErrors(Object.values(response.data.errors).flat());
-    // } else {
-    //   setSuccess("Berhasil Mendaftar ");
-    //   toast.success(
-    //     "Berhasil Daftar Baru Silahkan menunggu pihak kami akan mengehubungi mu "
-    //   );
-    // }
+    data.append("status", "Daftar Baru");
+    const response = await axios
+      .post("http://tssabes.my.id/api/daftar-ulang", data, {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "content-type": "multipart/form-data",
+        },
+        withCredehtials: true,
+      })
+      .catch((err) => err.response);
+    if (response.data.errors) {
+      toast.error("Data yang anda masukan salah");
+      setErrors(Object.values(response.data.errors).flat());
+    } else {
+      setSuccess("Berhasil Mendaftar ");
+      toast.success(
+        "Berhasil Daftar Baru Silahkan menunggu pihak kami akan mengehubungi mu "
+      );
+    }
   };
 
   return (
@@ -105,24 +77,32 @@ export default function Register() {
             <Image src="/image/image.jpg" width="600px" height="400px" alt="" />
           </div>
           <div className="col-12 col-md-6">
-            <h3> Pendaftaran </h3>
-            <p>
+            <h3> Data orang tua / wali </h3>
+            <p className="text-danger">
               {" "}
               Sebelum melakukan pendaftaran baca terlebih dahulu aturan atau
               tata tertibnya nya <Link href="/rules">disini</Link>
             </p>
+            <ul className="mt-3 list-disc list-inside text-sm text-red-600">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
             <form>
+              <input type="hidden" name="status" value={status} />
               <div className="first-form" id="first-form">
                 <div className="row mb-3">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label htmlFor="email"> Nama Lengkap :</label>
+                      <label htmlFor="email"> Nama Orang Tua / wali :</label>
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="namaLengkap"
-                        value={namaLengkap}
-                        onChange={(event) => setNamaLengkap(event.target.value)}
+                        value={namaLengkapParent}
+                        onChange={(event) =>
+                          setNamaLengkapParent(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -134,8 +114,8 @@ export default function Register() {
                         type="text"
                         className="form-control shadow-sm rounded-xl"
                         name="email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
+                        value={emailParent}
+                        onChange={(event) => setEmailParent(event.target.value)}
                       />
                     </div>
                   </div>
@@ -148,8 +128,10 @@ export default function Register() {
                         type="text"
                         name="tempatLahir"
                         className="form-control shadow-sm rounded-xl"
-                        value={tempatLahir}
-                        onChange={(event) => setTempatLahir(event.target.value)}
+                        value={tempatLahirParent}
+                        onChange={(event) =>
+                          setTempatLahirParent(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -161,9 +143,9 @@ export default function Register() {
                         type="date"
                         className="form-control shadow-sm rounded-xl"
                         name="tanggalLahir"
-                        value={tanggalLahir}
+                        value={tanggalLahirParent}
                         onChange={(event) =>
-                          setTanggalLahir(event.target.value)
+                          setTanggalLahirParent(event.target.value)
                         }
                       />
                     </div>
@@ -177,9 +159,9 @@ export default function Register() {
                         name="jenisKelamin"
                         className="form-control"
                         id="jenisKelamin"
-                        value={jenisKelamin}
+                        value={jenisKelaminParent}
                         onChange={(event) =>
-                          setJenisKelamin(event.target.value)
+                          setJenisKelaminParent(event.target.value)
                         }
                       >
                         <option> Pilih Jenis Kelamin </option>
@@ -196,8 +178,8 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="usia"
-                        value={usia}
-                        onChange={(event) => setusia(event.target.value)}
+                        value={usiaParent}
+                        onChange={(event) => setUsiaParent(event.target.value)}
                       />
                     </div>
                   </div>
@@ -210,8 +192,10 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="tinggiBadan"
-                        value={tinggiBadan}
-                        onChange={(event) => setTinggiBadan(event.target.value)}
+                        value={tinggiBadanParent}
+                        onChange={(event) =>
+                          setTinggiBadanParent(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -223,8 +207,10 @@ export default function Register() {
                         type="number"
                         className="form-control shadow-sm rounded-xl"
                         name="beratBadan"
-                        value={beratBadan}
-                        onChange={(event) => setberatBadan(event.target.value)}
+                        value={beratBadanParent}
+                        onChange={(event) =>
+                          setBeratBadanParent(event.target.value)
+                        }
                       />
                     </div>
                   </div>
@@ -237,8 +223,8 @@ export default function Register() {
                         name="agama"
                         className="form-control"
                         id="agama"
-                        value={agama}
-                        onChange={(event) => setagama(event.target.value)}
+                        value={agamaParent}
+                        onChange={(event) => setAgamaParent(event.target.value)}
                       >
                         <option> Pilih Agama </option>
                         <option value="Islam"> Islam </option>
@@ -250,31 +236,31 @@ export default function Register() {
 
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label htmlFor="email"> Asal Sekolah :</label>
+                      <label htmlFor="email"> Pekerjaan:</label>
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
-                        name="asalSekolah"
-                        value={asalSekolah}
-                        onChange={(event) => setasalSekolah(event.target.value)}
+                        name="pekerjaan"
+                        value={pekerjaanParent}
+                        onChange={(event) =>
+                          setPekerjaanParent(event.target.value)
+                        }
                       />
                     </div>
                   </div>
                 </div>
+
                 <div className="row mb-3">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label htmlFor="email">
-                        {" "}
-                        Tingkatan Sekolah (Kelas) :
-                      </label>
+                      <label htmlFor="email"> Alamat:</label>
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
-                        name="tingkatanSekolah"
-                        value={tingkatanSekolah}
+                        name="alamatParent"
+                        value={alamatParent}
                         onChange={(event) =>
-                          settingkatanSekolah(event.target.value)
+                          setAlamatParent(event.target.value)
                         }
                       />
                     </div>
@@ -282,77 +268,24 @@ export default function Register() {
 
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label htmlFor="email"> Unit Latihan :</label>
+                      <label htmlFor="email"> No Telp:</label>
                       <input
                         type="text"
                         className="form-control shadow-sm rounded-xl"
-                        name="unitLatihan"
-                        value={unitLatihan}
-                        onChange={(event) => setunitLatihan(event.target.value)}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label htmlFor="email"> Tingkatan Sabuk (Kelas) :</label>
-                      <input
-                        type="text"
-                        className="form-control shadow-sm rounded-xl"
-                        value={tingkatanSabuk}
+                        name="telp"
+                        value={noTelpParent}
                         onChange={(event) =>
-                          settingkatanSabuk(event.target.value)
+                          setnoTelpParent(event.target.value)
                         }
                       />
                     </div>
                   </div>
+                </div>
 
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label htmlFor="email"> Riwayat Kesehatan :</label>
-                      <input
-                        type="text"
-                        className="form-control shadow-sm rounded-xl"
-                        name="riwayatKesehatan"
-                        value={riwayatKesehatan}
-                        onChange={(event) =>
-                          setriwayatKesehatan(event.target.value)
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row mb-3">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label htmlFor="email"> Alamat :</label>
-                      <input
-                        type="text"
-                        className="form-control shadow-sm rounded-xl"
-                        name="alamat"
-                        value={alamat}
-                        onChange={(event) => setalamat(event.target.value)}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label htmlFor="email"> No Telepon :</label>
-                      <input
-                        type="text"
-                        className="form-control shadow-sm rounded-xl"
-                        name="noTelp"
-                        value={noTelp}
-                        onChange={(event) => setnoTelp(event.target.value)}
-                      />
-                    </div>
-                  </div>
-                </div>
                 <div className="col-md-12 my-3">
                   <label htmlFor="foto" className="mb-2">
                     {" "}
-                    Foto(Background Putih Menggunakan Baju Tapak Suci)
+                    Foto Orang tua / Wali
                   </label>
                   <input
                     type="file"
@@ -361,32 +294,35 @@ export default function Register() {
                     onChange={(event) => {
                       console.log(event.target.files);
                       const image = event.target.files[0];
-                      return setfoto(image);
+                      return setFotoParent(image);
                     }}
                   />
                 </div>
-                <div className="col-md-12">
-                  <label htmlFor="akte" className="mb-2">
-                    {" "}
-                    Akte ( Foto )
+                <div className="col-md-12 my-3">
+                  <label
+                    htmlFor="foto"
+                    className="mb-2"
+                    style={{ textAlign: "justify" }}
+                  >
+                    Menyetujui apa saja yang tertera dalam Peraturan Pusat
+                    Pembinaan Pendidikan Latihan (PUSBINDIKLAT) GEMILANG serta
+                    mempercayakan penuh terhadap kebijakan pengurus dan pelatih
+                    dalam melaksanakan program ini.
                   </label>
                   <input
-                    type="file"
-                    className="form-control"
-                    name="akte"
-                    accept="image/png image/jpeg"
-                    onChange={(event) => {
-                      console.log(event.target.files);
-                      const image = event.target.files[0];
-                      return setakte(image);
-                    }}
+                    type="checkbox"
+                    id="vehicle1"
+                    name="vehicle1"
+                    value="Bike"
                   />
+                  <label for="vehicle1"> &nbsp; Setuju</label>
+                  <br />
                 </div>
                 <button
                   className="cssbuttons-io-button mt-3"
                   onClick={onSubmit}
                 >
-                  Selanjutnya
+                  Lakukan pendaftaran sekarang
                   <div className="icon">
                     <svg
                       height="24"

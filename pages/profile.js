@@ -1,91 +1,96 @@
 import Image from "next/image";
 import style from "../styles/Profile.module.css";
+import ImageProfile from "../public/image/profile.png";
+import ImageGroup from "../public/image/Profile-Group.png";
 export default function profile() {
   return (
-    <div>
-      <div className="container">
-        <div className="col-12">
-          <div className="row mb-3">
-            <div className="col-12 col-md-12 text-center my-5">
-              <h1 className="title-banner"> Pusbindiklat Gemilang </h1>
-              <h3 className="title-desc"> Perguruan Bela Diri </h3>
-            </div>
-            <div className="col-12">
-              <Image
-                src="/image/bannerprofile.jpg"
-                width={400}
-                height={200}
-                layout="responsive"
-                className="shadow rounded"
-                alt=""
-              />
-            </div>
+    <section
+      className="h-100 w-100 bg-white"
+      style={{ boxSizing: "border-box" }}
+    >
+      <div
+        className="content-3-1 container-xxl mx-auto position-relative"
+        style={{ fontFamily: "Poppins, sans-serif" }}
+      >
+        <div className="d-flex flex-lg-row flex-column align-items-center">
+          <div className="img-hero text-center justify-content-center d-flex">
+            <Image
+              id="hero"
+              className="img-fluid"
+              src={ImageProfile}
+              alt="image"
+              width={643}
+              height={537}
+            />
           </div>
-          <div className="col-12 text-center">
-            <h1 className={style.fontContact}>Hubungi Kami </h1>
-          </div>
-          <div className="row col-12 my-3">
-            <div className="col-12 col-md-4">
-              <h1 className="my-2 font-contact fw-700"> Kontak </h1>
-              <button className="button-profile">
-                <span style={{ fontFamily: "Poppins" }}>0812-8400-7005</span>
-                <div className="liquid"></div>
-              </button>
-            </div>
-            <div className="col-12 col-md-4">
-              <h1 className="my-2 font-contact fw-700">Alamat </h1>
-              <button className="button-route"> Click me</button>
-              <p>
-                Jl karang anyar raya, rptra rw 02 Jakarta Pusat DKI Jakarta
-                10740 Indonesia
-              </p>
-            </div>
-            <div className="col-12 col-md-4">
-              <h1 className="my-2 font-contact fw-700"> Jam Buka </h1>
-              <div>
-                <table>
-                  <tr>
-                    <td>Senin</td>
-                    <td>: 15.30 - 21.00</td>
-                  </tr>
-                  <tr>
-                    <td>Selasa</td>
-                    <td>: 15.30 - 21.00</td>
-                  </tr>
-                  <tr>
-                    <td>Rabu</td>
-                    <td>: 15.30 - 20.30</td>
-                  </tr>
-                  <tr>
-                    <td>Kamis</td>
-                    <td>: 15.30 - 21.00</td>
-                  </tr>
-                  <tr>
-                    <td>Jumat</td>
-                    <td>: 15.30 - 20.30</td>
-                  </tr>
-                  <tr>
-                    <td>Sabtu</td>
-                    <td>: Tutup</td>
-                  </tr>
-                  <tr>
-                    <td>Minggu</td>
-                    <td>: 08.00 - 12.00</td>
-                  </tr>
-                </table>
+
+          <div className="right-column d-flex flex-column align-items-lg-start align-items-center text-lg-start text-center">
+            <h2 className="title-text">3 Keuntungan Pusbindiklat Gemilang</h2>
+            <ul className="p-0 m-0">
+              <li className="list-unstyled">
+                <h4 className="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                  <span className="circle text-white d-flex align-items-center justify-content-center">
+                    1
+                  </span>
+                  Trusted Mentor
+                </h4>
+                <p className="text-caption">
+                  We have provided highly experienced mentors
+                  <br className="d-sm-inline d-none" />
+                  for several years.
+                </p>
+              </li>
+              <li className="list-unstyled">
+                <h4 className="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                  <span className="circle text-white d-flex align-items-center justify-content-center">
+                    2
+                  </span>
+                  Access Forever
+                </h4>
+                <p className="text-caption">
+                  Are you busy at work so it's hard to consult? don't
+                  <br className="d-sm-inline d-none" />
+                  worry because you can access anytime.
+                </p>
+              </li>
+              <li className="list-unstyled">
+                <h4 className="title-caption d-flex flex-lg-row flex-column align-items-center justify-content-lg-start justify-content-center">
+                  <span className="circle text-white d-flex align-items-center justify-content-center">
+                    3
+                  </span>
+                  Halfpenny
+                </h4>
+                <p className="text-caption">
+                  We provide economical packages for those of you
+                  <br className="d-sm-inline d-none" />
+                  who are still in school or workers.
+                </p>
+              </li>
+            </ul>
+            <div className="row">
+              <div className="col-auto">
+                <a className="btn btn-learn text-white">
+                  <i className="fas fa-phone-alt mr-2" />
+                  &nbsp; 0812-8400-7005
+                </a>
+              </div>
+              <div className="col-auto">
+                <a className="btn btn-learn text-white">
+                  <i className="fas fa-map-marker-alt"></i>
+                  &nbsp;Klik Map Disini
+                </a>
               </div>
             </div>
           </div>
-          <div className="maps">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15867.37626825078!2d106.8273723!3d-6.1516326!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x85572b55e82da086!2sRPTRA%20Karang%20Anyar!5e0!3m2!1sen!2sid!4v1646748367330!5m2!1sen!2sid"
-              width="100%"
-              height="600"
-              loading="lazy"
-            ></iframe>
+        </div>
+      </div>
+      <div className="container">
+        <div className="row align-items-center text-center section-profile">
+          <div className="col-md-12 col-12">
+            <Image src={ImageGroup} alt="imageGroup"></Image>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

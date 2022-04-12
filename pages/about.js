@@ -6,7 +6,7 @@ export default function about({ style }) {
       <div className="container">
         <div className="row ">
           <div className="col-12 col-md-6 mt-5">
-            <h3 className="text-center fw-bold mb-3"> Tentang Kami </h3>
+            <h3 className="title-banner"> Tentang Kami </h3>
             <div className="text-about">
               <p>
                 Tapak Suci <strong>Putera Muhammadiyah </strong> berdiri pada 31
@@ -65,6 +65,16 @@ export default function about({ style }) {
             ></Image>
           </div>
         </div>
+      </div>
+      <hr className="container" />
+      <div className="maps container mt-5">
+        <h3 className="text-center title-banner"> Temukan Kami di Maps </h3>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15867.37626825078!2d106.8273723!3d-6.1516326!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x85572b55e82da086!2sRPTRA%20Karang%20Anyar!5e0!3m2!1sen!2sid!4v1646748367330!5m2!1sen!2sid"
+          width="100%"
+          height="600"
+          loading="lazy"
+        ></iframe>
       </div>
       <div className="container-fluid">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

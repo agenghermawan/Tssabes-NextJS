@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useCallback, useEffect } from "react";
 import GalleryIndex from "../Components/gallery";
 import { DaftarGallery } from "../services/achievement";
+import Link from "next/link";
 
 export default function Home() {
   const [listGallery, setListGallery] = useState([]);
@@ -32,7 +33,17 @@ export default function Home() {
                 Buka hari ini <br />
                 Sampai pukul 21.00{" "}
               </p>
-              <button className="btn-get mt-3">Daftar Sekarang</button>
+              <Link href="/register">
+                <button
+                  className="btn-get mt-3"
+                  style={{
+                    backgroundColor: "#0ec8f8",
+                    color: "whitesmke",
+                  }}
+                >
+                  Daftar Sekarang
+                </button>
+              </Link>
             </div>
           </div>
           <div className="col-12 col-md-6">
@@ -213,25 +224,26 @@ export default function Home() {
               {" "}
               Berlatih dan menjadi <br /> yang terbaik{" "}
             </p>
-
-            <button className="cssbuttons-io-button">
-              {" "}
-              Mulai Sekarang
-              <div className="icon">
-                <svg
-                  height="24"
-                  width="24"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M0 0h24v24H0z" fill="none"></path>
-                  <path
-                    d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
-                    fill="currentColor"
-                  ></path>
-                </svg>
-              </div>
-            </button>
+            <Link href="/register">
+              <button className="cssbuttons-io-button">
+                {" "}
+                Mulai Sekarang
+                <div className="icon">
+                  <svg
+                    height="24"
+                    width="24"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path
+                      d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"
+                      fill="currentColor"
+                    ></path>
+                  </svg>
+                </div>
+              </button>
+            </Link>
           </div>
         </div>
 
