@@ -33,7 +33,7 @@ export default function Home() {
                 Buka hari ini <br />
                 Sampai pukul 21.00{" "}
               </p>
-              <Link href="/register">
+              <Link href="/register" passHref>
                 <button
                   className="btn-get mt-3"
                   style={{
@@ -224,7 +224,7 @@ export default function Home() {
               {" "}
               Berlatih dan menjadi <br /> yang terbaik{" "}
             </p>
-            <Link href="/register">
+            <Link href="/register" passHref>
               <button className="cssbuttons-io-button">
                 {" "}
                 Mulai Sekarang

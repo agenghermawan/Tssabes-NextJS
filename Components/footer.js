@@ -22,7 +22,7 @@ export default function footer() {
               Jl. Karang Anyar Kecamatan Sawah Besar <br />
               Jakarta Selatan
             </p>
-            <div className="mt-md-5 social-media">
+            {/* <div className="mt-md-5 social-media">
               <a href="#">
                 <img
                   src="https://api.elements.buildwithangga.com/storage/files/2/assets/Content/Content-workly/bi_linkedin.svg"
@@ -51,7 +51,7 @@ export default function footer() {
                   className="img-fluid"
                 />
               </a>
-            </div>
+            </div> */}
           </div>
           <hr className="clearfix w-100 d-md-none pb-3" />
           <div className="row col-md-6 nav-footer">

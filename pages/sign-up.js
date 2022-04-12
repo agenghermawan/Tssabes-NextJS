@@ -315,7 +315,7 @@ export default function SignUp() {
                     name="vehicle1"
                     value="Bike"
                   />
-                  <label for="vehicle1"> &nbsp; Setuju</label>
+                  <label htmlFor="vehicle1"> &nbsp; Setuju</label>
                   <br />
                 </div>
                 <button

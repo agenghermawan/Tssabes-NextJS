@@ -48,7 +48,7 @@ export default function profile() {
                   Access Forever
                 </h4>
                 <p className="text-caption">
-                  Are you busy at work so it's hard to consult? don't
+                  Are you busy at work so its hard to consult? dont
                   <br className="d-sm-inline d-none" />
                   worry because you can access anytime.
                 </p>
