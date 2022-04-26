@@ -2,7 +2,11 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["tssabes.my.id", "http://localhost:8000"],
+    domains: [
+      // "tssabes.my.id",
+      // "http://localhost:8000",
+      "https://pusbindiklat-gemilang.com",
+    ],
   },
 };
 
