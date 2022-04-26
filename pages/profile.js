@@ -1,7 +1,7 @@
 import Image from "next/image";
 import style from "../styles/Profile.module.css";
 import ImageProfile from "../public/image/profile.png";
-import ImageGroup from "../public/image/Profile-Group.png";
+import ImageGroup from "../public/image/Group-profile.png";
 export default function profile() {
   return (
     <section
@@ -32,12 +32,12 @@ export default function profile() {
                   <span className="circle text-white d-flex align-items-center justify-content-center">
                     1
                   </span>
-                  Trusted Mentor
+                  Memberikan Pelatihan secara kompeten
                 </h4>
                 <p className="text-caption">
-                  We have provided highly experienced mentors
+                  Kami memberikan mentor yang berpengalaman
                   <br className="d-sm-inline d-none" />
-                  for several years.
+                  dalam bidang ini
                 </p>
               </li>
               <li className="list-unstyled">
@@ -45,12 +45,12 @@ export default function profile() {
                   <span className="circle text-white d-flex align-items-center justify-content-center">
                     2
                   </span>
-                  Access Forever
+                  Rasa Kekeluargaan yang tinggi
                 </h4>
                 <p className="text-caption">
-                  Are you busy at work so its hard to consult? dont
+                  Kelompok yang sangat kompak sesama
                   <br className="d-sm-inline d-none" />
-                  worry because you can access anytime.
+                  dan sangat Kekeluargaan
                 </p>
               </li>
               <li className="list-unstyled">
@@ -58,12 +58,12 @@ export default function profile() {
                   <span className="circle text-white d-flex align-items-center justify-content-center">
                     3
                   </span>
-                  Halfpenny
+                  Berlatih Bersama Kami
                 </h4>
                 <p className="text-caption">
-                  We provide economical packages for those of you
+                  Mulai berlatih bersama kami
                   <br className="d-sm-inline d-none" />
-                  who are still in school or workers.
+                  dan menjadi yang terbaik
                 </p>
               </li>
             </ul>

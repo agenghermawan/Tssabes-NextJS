@@ -59,13 +59,10 @@ export default function footer() {
               <p>Our Features</p>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!">Adaptive</a>
+                  <a href="#!">Profile</a>
                 </li>
                 <li>
-                  <a href="#!">Faster</a>
-                </li>
-                <li>
-                  <a href="#!">Integrated</a>
+                  <a href="#!">Prestasi</a>
                 </li>
               </ul>
             </div>
@@ -73,13 +70,11 @@ export default function footer() {
               <p>Company</p>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!">About Us</a>
+                  <a href="#!">Tentang Kami</a>
                 </li>
+
                 <li>
-                  <a href="#!">Blog</a>
-                </li>
-                <li>
-                  <a href="#!">Join Us</a>
+                  <a href="#!">Gabung Bersama Kami</a>
                 </li>
               </ul>
             </div>
@@ -87,13 +82,7 @@ export default function footer() {
               <p>Help</p>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#!">API Documentation</a>
-                </li>
-                <li>
-                  <a href="#!">System Status</a>
-                </li>
-                <li>
-                  <a href="#!">Talk to Support</a>
+                  <a href="#!">Chat Kami </a>
                 </li>
               </ul>
             </div>

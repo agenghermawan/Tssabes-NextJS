@@ -31,7 +31,7 @@ export default function SignUp() {
   const onSubmit = async (event) => {
     event.preventDefault();
     const localForm = localStorage.getItem("user-form");
-    const userForm = JSON.parse(localForm);
+    const form = JSON.parse(localForm);
     const data = new FormData();
 
     data.append("emailParent", emailParent);
@@ -48,9 +48,29 @@ export default function SignUp() {
     data.append("noTelpParent", noTelpParent);
     data.append("fotoParent", fotoParent);
 
+    data.append("email", form.email);
+    data.append("namaLengkap", form.namaLengkap);
+    data.append("tempatLahir", form.tempatLahir);
+    data.append("tanggalLahir", form.tanggalLahir);
+    data.append("jenisKelamin", form.jenisKelamin);
+    data.append("usia", form.usia);
+    data.append("tinggiBadan", form.tinggiBadan);
+    data.append("beratBadan", form.beratBadan);
+    data.append("agama", form.agama);
+    data.append("asalSekolah", form.asalSekolah);
+    data.append("tingkatanSabuk", form.tingkatanSabuk);
+    data.append("tingkatanSekolah", form.tingkatanSekolah);
+    data.append("unitLatihan", form.unitLatihan);
+    data.append("riwayatKesehatan", form.riwayatKesehatan);
+    data.append("alamat", form.alamat);
+    data.append("noTelp", form.noTelp);
+    data.append("foto", form.foto);
+    data.append("akte", form.akte);
     data.append("status", "Daftar Baru");
+
     const response = await axios
-      .post("http://tssabes.my.id/api/daftar-ulang", data, {
+      // .post("http://tssabes.my.id/api/daftar-ulang", data, {
+      .post("http://localhost:8000/api/daftar-ulang", data, {
         headers: {
           "X-Requested-With": "XMLHttpRequest",
           "content-type": "multipart/form-data",
@@ -311,11 +331,12 @@ export default function SignUp() {
                   </label>
                   <input
                     type="checkbox"
-                    id="vehicle1"
-                    name="vehicle1"
-                    value="Bike"
+                    id="aggrement"
+                    name="aggrement"
+                    value="Agre"
+                    required
                   />
-                  <label htmlFor="vehicle1"> &nbsp; Setuju</label>
+                  <label htmlFor="aggrement"> &nbsp; Setuju</label>
                   <br />
                 </div>
                 <button
