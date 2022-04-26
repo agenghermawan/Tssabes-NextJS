@@ -6,6 +6,7 @@ const nextConfig = {
       // "tssabes.my.id",
       // "http://localhost:8000",
       "https://pusbindiklat-gemilang.com",
+      "pusbindiklat-gemilang.com",
     ],
   },
 };
