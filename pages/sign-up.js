@@ -70,7 +70,7 @@ export default function SignUp() {
 
     const response = await axios
       // .post("http://tssabes.my.id/api/daftar-ulang", data, {
-      .post("http://localhost:8000/api/daftar-ulang", data, {
+      .post("https://pusbindiklat-gemilang.com/api/daftar-ulang", data, {
         headers: {
           "X-Requested-With": "XMLHttpRequest",
           "content-type": "multipart/form-data",

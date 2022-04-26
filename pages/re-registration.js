@@ -57,7 +57,7 @@ export default function Register() {
     data.append("akte", akte);
     data.append("status", "Daftar Ulang");
     const response = await axios
-      .post("http://tssabes.my.id/api/daftar-ulang", data, {
+      .post("https://pusbindiklat-gemilang.com/api/daftar-ulang", data, {
         headers: {
           "X-Requested-With": "XMLHttpRequest",
           "content-type": "multipart/form-data",
